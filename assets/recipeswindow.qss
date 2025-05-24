@@ -1,0 +1,24 @@
+QMainWindow#recipeswindow{
+    border:none;
+    background-image:url(":/assets/background.jpg");
+}
+QStackedWidget#stackedWidget{
+    background:transparent;
+    border:rgb(156, 52, 1);
+}
+QScrollArea#scrollArea{
+    background-color:transparent;
+}
+QWidget#text_area{
+    background-color: white;
+}
+QLabel#text{
+    color:black;
+}
+QPushButton{
+    border:none;
+    background-color:rgb(156, 52, 1);
+    color: white;
+    border-radius: 5px;
+    padding: 0 8px;
+}
