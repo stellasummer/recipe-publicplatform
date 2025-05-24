@@ -1,0 +1,22 @@
+<RCC>
+    <qresource prefix="/">
+        <file>assets/background.jpg</file>
+        <file>assets/mainwindow.qss</file>
+        <file>assets/pku_recipes_logo.png</file>
+        <file>assets/plus.png</file>
+        <file>assets/search_icon.png</file>
+        <file>assets/1.png</file>
+        <file>assets/9.png</file>
+        <file>assets/6.png</file>
+        <file>assets/5.png</file>
+        <file>assets/8.png</file>
+        <file>assets/4.png</file>
+        <file>assets/3.png</file>
+        <file>assets/2.png</file>
+        <file>assets/0.png</file>
+        <file>assets/7.png</file>
+        <file>assets/mystorewindow.qss</file>
+        <file>assets/recipeswindow.qss</file>
+        <file>assets/createwindow.qss</file>
+    </qresource>
+</RCC>
