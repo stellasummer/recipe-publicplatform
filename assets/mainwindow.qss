@@ -1,0 +1,77 @@
+QMainWindow#MainWindow{
+    border:none;
+    background-image:url(":/assets/background.jpg");
+}
+QPushButton#create_recipes{
+    border: none;
+    border-image: url(":/assets/plus.png") 0 0 0 0 stretch stretch;
+    min-width: 24px;
+    min-height: 24px;
+    padding: 0px;
+    border-radius: 5px;
+    background-color:rgb(156, 52, 1);
+}
+QPushButton#create_recipes:hover{
+    background-color: #e0e0e0;
+    }
+QLineEdit#search_box{
+    background-color: white;
+    border: 2px solid gray;
+    border-radius: 5px;
+    padding: 0 8px;
+}
+QLabel#logo{
+    border:none;
+    border-image:url(":/assets/pku_recipes_logo.png") 0 0 0 0 stretch stretch;
+    background-color: transparent;
+}
+QPushButton#search_icon{
+    border:none;
+    border-image:url(":/assets/search_icon.png") 0 0 0 0 stretch stretch;
+    background-color:rgb(156, 52, 1);
+    border-radius: 5px;
+    padding: 0 8px;
+}
+QPushButton#search_icon:hover{
+    background-color: #e0e0e0;
+    }
+QPushButton#mystore{
+    border:none;
+    background-color:rgb(156, 52, 1);
+    color: white;
+    border-radius: 5px;
+    padding: 0 8px;
+}
+QPushButton#mystore:hover{
+    background-color: #e0e0e0;
+    }
+QFrame#top_frame{
+    background-color: rgb(255, 118, 32);
+}
+QFrame#bottom_frame{
+    background-color: rgb(255, 118, 32);
+}
+QStackedWidget#stackedWidget{
+    background:transparent;
+    border:none;
+}
+QStackedWidget>QWidget#page{
+    background:transparent;
+    border:none;
+}
+QStackedWidget>QWidget#page_1{
+    background:transparent;
+    border:none;
+}
+QScrollArea#scrollArea{
+    background-color:transparent;
+}
+QWidget#search_results{
+    background-color:transparent;
+}
+QWidget#dish_list{
+    background-color:transparent;
+}
+QScrollArea#scrollArea_2{
+    background-color:transparent;
+}

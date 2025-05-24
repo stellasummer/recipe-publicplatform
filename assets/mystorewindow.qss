@@ -1,0 +1,67 @@
+QScrollArea#scrollArea{
+    background-color:transparent;
+}
+QWidget#collection_list{
+    background-color:transparent;
+}
+QWidget#draft_list{
+    background-color:transparent;
+}
+QScrollArea#scrollArea_2{
+    background-color:transparent;
+}
+QTabWidget::pane {
+    /* 整个 TabWidget 的外边框 */
+    border: 2px solid rgb(181, 96, 54);
+    background:rgb(181, 96, 54);
+    margin: 0px;
+    padding: 0px;
+}
+
+QTabBar::tab {
+    /* 单个标签的样式 */
+    background: rgb(156, 52, 1);
+    border: 1px solid rgb(156, 52, 1);
+    border-bottom: none; /* 与下方边框重叠 */
+    padding: 5px 15px;
+    font-family: "Microsoft YaHei";
+    font-size: 12px;
+    color: #ffffff;
+}
+QTabBar::tab:hover {
+    /* 鼠标悬停时的样式 */
+    background: #e8e8e8;
+    
+}
+QTabBar::tab:selected {
+    /* 选中标签的样式 */
+    background: rgb(181, 96, 54);
+    font-weight: bold;
+    border-color: rgb(181, 96, 54);
+    border-bottom-color: #f5f5f5; /* 与下方背景色相同 */
+}
+
+QMainWindow#myStoreWindow{
+    border:none;
+    background-image:url(":/assets/background.jpg");
+}
+QLineEdit#name_edit{
+    background-color: white;
+    border: 2px solid gray;
+    border-radius: 5px;
+    padding: 0 8px;
+    color:black;
+}
+QPlainTextEdit#intro_edit{
+    background-color: white;
+    border: 2px solid gray;
+    border-radius: 5px;
+    padding: 0 8px;
+    color:black;
+}
+QLabel#label{
+    color:rgb(156, 52, 1);
+}
+QLabel#label_2{
+    color:rgb(156, 52, 1);
+}
