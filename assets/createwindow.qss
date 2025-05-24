@@ -1,0 +1,39 @@
+QMainWindow#createwindow{
+    border:none;
+    background-image:url(":/assets/background.jpg");
+}
+QLabel{
+    color:black;
+}
+QPushButton{
+    border:none;
+    background-color:rgb(156, 52, 1);
+    color: white;
+    border-radius: 5px;
+    padding: 0 8px;
+}
+QPushButton hover{
+    background-color: #e0e0e0;
+}
+QLineEdit{
+    background-color: white;
+    color:black;
+    border: 2px solid gray;
+    border-radius: 5px;
+    padding: 0 8px;
+    
+}
+QPlainTextEdit{
+    background-color: white;
+    border: 2px solid gray;
+    border-radius: 5px;
+    padding: 0 8px;
+    color:black;
+}
+QListView{
+    background-color: white;
+    border: 2px solid gray;
+    border-radius: 5px;
+    padding: 0 8px;
+    color:black;
+}
