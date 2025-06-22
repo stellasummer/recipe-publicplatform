@@ -57,10 +57,10 @@
        </size>
       </property>
       <property name="frameShape">
-       <enum>QFrame::StyledPanel</enum>
+       <enum>QFrame::Shape::StyledPanel</enum>
       </property>
       <property name="frameShadow">
-       <enum>QFrame::Raised</enum>
+       <enum>QFrame::Shadow::Raised</enum>
       </property>
       <layout class="QHBoxLayout" name="horizontalLayout_9">
        <property name="spacing">
@@ -89,10 +89,10 @@
          <item>
           <spacer name="horizontalSpacer_13">
            <property name="orientation">
-            <enum>Qt::Horizontal</enum>
+            <enum>Qt::Orientation::Horizontal</enum>
            </property>
            <property name="sizeType">
-            <enum>QSizePolicy::Fixed</enum>
+            <enum>QSizePolicy::Policy::Fixed</enum>
            </property>
            <property name="sizeHint" stdset="0">
             <size>
@@ -130,10 +130,10 @@
          <item>
           <spacer name="horizontalSpacer_14">
            <property name="orientation">
-            <enum>Qt::Horizontal</enum>
+            <enum>Qt::Orientation::Horizontal</enum>
            </property>
            <property name="sizeType">
-            <enum>QSizePolicy::MinimumExpanding</enum>
+            <enum>QSizePolicy::Policy::MinimumExpanding</enum>
            </property>
            <property name="sizeHint" stdset="0">
             <size>
@@ -143,7 +143,7 @@
            </property>
           </spacer>
          </item>
-         <item alignment="Qt::AlignVCenter">
+         <item alignment="Qt::AlignmentFlag::AlignVCenter">
           <widget class="QWidget" name="widget_4" native="true">
            <property name="sizePolicy">
             <sizepolicy hsizetype="Fixed" vsizetype="Preferred">
@@ -211,10 +211,10 @@
          <item>
           <spacer name="horizontalSpacer_15">
            <property name="orientation">
-            <enum>Qt::Horizontal</enum>
+            <enum>Qt::Orientation::Horizontal</enum>
            </property>
            <property name="sizeType">
-            <enum>QSizePolicy::Fixed</enum>
+            <enum>QSizePolicy::Policy::Fixed</enum>
            </property>
            <property name="sizeHint" stdset="0">
             <size>
@@ -246,10 +246,10 @@
          <item>
           <spacer name="horizontalSpacer_16">
            <property name="orientation">
-            <enum>Qt::Horizontal</enum>
+            <enum>Qt::Orientation::Horizontal</enum>
            </property>
            <property name="sizeType">
-            <enum>QSizePolicy::Fixed</enum>
+            <enum>QSizePolicy::Policy::Fixed</enum>
            </property>
            <property name="sizeHint" stdset="0">
             <size>
@@ -290,7 +290,7 @@
             <rect>
              <x>0</x>
              <y>0</y>
-             <width>823</width>
+             <width>825</width>
              <height>2000</height>
             </rect>
            </property>
@@ -338,7 +338,7 @@
             <rect>
              <x>0</x>
              <y>0</y>
-             <width>823</width>
+             <width>825</width>
              <height>2000</height>
             </rect>
            </property>
@@ -382,10 +382,10 @@
        </size>
       </property>
       <property name="frameShape">
-       <enum>QFrame::StyledPanel</enum>
+       <enum>QFrame::Shape::StyledPanel</enum>
       </property>
       <property name="frameShadow">
-       <enum>QFrame::Raised</enum>
+       <enum>QFrame::Shadow::Raised</enum>
       </property>
       <layout class="QHBoxLayout" name="horizontalLayout_11">
        <property name="leftMargin">

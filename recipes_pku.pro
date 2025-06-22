@@ -11,27 +11,19 @@ CONFIG += c++17
 SOURCES += \
     avatarbutton.cpp \
     createwindow.cpp \
-    designui.cpp \
     imagebutton.cpp \
     main.cpp \
     mainwindow.cpp \
     mystorewindow.cpp \
-    postdata.cpp \
-    postdatamanager.cpp \
-    recipeswindow.cpp \
-    userdata.cpp
+    recipeswindow.cpp
 
 HEADERS += \
     avatarbutton.h \
     createwindow.h \
-    designui.h \
     imagebutton.h \
     mainwindow.h \
     mystorewindow.h \
-    postdata.h \
-    postdatamanager.h \
-    recipeswindow.h \
-    userdata.h
+    recipeswindow.h
 
 FORMS += \
     createwindow.ui \
