@@ -2,6 +2,9 @@
 #define MAINWINDOW_H
 #include "ui_mainwindow.h"
 #include"mystorewindow.h"
+#include "userdata.h"
+#include"postdata.h"
+#include"postdatamanager.h"
 #include <QMainWindow>
 #include<QPushButton>
 #include<QHBoxLayout>
@@ -16,8 +19,11 @@ class MainWindow : public QMainWindow
     Q_OBJECT
 
 public:
+    UserData *user=new UserData();
+    PostDataManager posts;
     MainWindow(QWidget *parent = nullptr);
     ~MainWindow();
+    bool eventFilter(QObject *obj, QEvent *event);
 
 private slots:
     void on_mystore_clicked();

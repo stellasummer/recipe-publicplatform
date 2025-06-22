@@ -1,0 +1,34 @@
+#ifndef POSTSDATA_H
+#define POSTSDATA_H
+#include<QString>
+#include<QVector>
+class Post
+{
+public:
+    int id;
+    QString title;
+    QString type;//区分收藏，也可以用作区分草稿
+    QString content;
+    QString postDir;//post文件夹路径
+    QVector<QString> pixFilename;
+   
+    Post(int _id,QString _title,QString type,QString _content,QVector<QString> _pixFilename);
+    bool changePost(int _id,QString _title,QString _type,QString _content,QVector<QString> _pixFilename);//修改帖子
+    bool loadPost();//从文件中加载数据
+    QVector<Post*> advancedSearch(QVector<const QString &_title, const QString &_type, const QString &_content);
+};
+
+class PostsData
+{
+public:
+
+
+    
+
+    
+    bool changePost(int _id,QString _title,QString _type,QString _content,QVector<QString> _pixFilename);//修改帖子
+
+    QVector<Post*> advancedSearch(const QString &_title, const QString &_type, const QString &_content);
+};
+
+#endif // POSTSDATA_H
