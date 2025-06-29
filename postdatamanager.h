@@ -31,6 +31,7 @@ public:
     QVector<PostData*> searchByContent(const QString& keyword) const;
     QVector<PostData*> searchByAll(const QString& keyword) const;
 
+    void loadDraftsFromDisk(); // 新增：从磁盘加载草稿
 };
 
 #endif // POSTDATAMANAGER_H

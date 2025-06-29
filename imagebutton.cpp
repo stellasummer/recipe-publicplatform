@@ -5,8 +5,12 @@
 #include<QScrollBar>
 #include<QVector>
 #include<QString>
-ImageButton::ImageButton(const QString &text, const QString &imagePath,QWidget *parent)
-    : QPushButton(parent){
+//创建一个带有文本和图片的按钮
+ImageButton::ImageButton(const QString &text, const QString &imagePath, PostData* post, PostDataManager* manager, QWidget *parent)
+    : QPushButton(parent)
+    , m_post(post)
+    , m_postManager(manager)
+{
     QVBoxLayout *layout = new QVBoxLayout(this);
     layout->setContentsMargins(3, 3, 3, 3);
     layout->setSpacing(3);
@@ -30,13 +34,20 @@ ImageButton::ImageButton(const QString &text, const QString &imagePath,QWidget *
 
     // 文本区域（固定高度30%）
     QWidget *textContainer = new QWidget();
-    textContainer->setFixedHeight(50); // 固定文字区域高度
-    QLabel *textLabel = new QLabel(text);
-    textLabel->setAlignment(Qt::AlignCenter);
-    textLabel->setStyleSheet("font-size: 20px; color: black;");
+    textContainer->setFixedHeight(70); // 增加高度以容纳简介
     QVBoxLayout *textLayout = new QVBoxLayout(textContainer);
-    textLayout->addWidget(textLabel, 0, Qt::AlignHCenter | Qt::AlignBottom);
-
+    textLayout->setContentsMargins(0, 0, 0, 0);
+    QLabel *titleLabel = new QLabel(text);
+    titleLabel->setAlignment(Qt::AlignCenter);
+    titleLabel->setStyleSheet("font-size: 20px; color: black;");
+    textLayout->addWidget(titleLabel, 0, Qt::AlignHCenter | Qt::AlignTop);
+    // 新增简介
+    if (post && !post->content.isEmpty()) {
+        QLabel *descLabel = new QLabel(post->content.left(30) + (post->content.size() > 30 ? "..." : ""));
+        descLabel->setAlignment(Qt::AlignCenter);
+        descLabel->setStyleSheet("font-size: 14px; color: #666;");
+        textLayout->addWidget(descLabel, 0, Qt::AlignHCenter | Qt::AlignBottom);
+    }
     // 添加到主布局（设置拉伸因子）
     layout->addWidget(imageContainer, 7); // 图片占70%空间
     layout->addWidget(textContainer, 3);
@@ -58,7 +69,9 @@ ImageButton::ImageButton(const QString &text, const QString &imagePath,QWidget *
 }
 void ImageButton::onClicked() {
     if(!recipeswindow_ui){
-        recipeswindow_ui = new recipeswindow(this);
+        recipeswindow_ui = new recipeswindow(m_post, m_postManager, this);
+        // 连接信号，当帖子更新后通知主窗口刷新
+        connect(recipeswindow_ui, &recipeswindow::postUpdated, this, &ImageButton::postUpdated);
     }
     recipeswindow_ui -> show();
 }

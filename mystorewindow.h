@@ -11,6 +11,7 @@ namespace Ui {
 class myStoreWindow;
 }
 
+// mystorewindow 类表示“我的”页面窗口，用于展示用户的收藏、草稿箱和个人信息
 class myStoreWindow : public QMainWindow
 {
     Q_OBJECT

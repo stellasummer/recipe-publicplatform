@@ -7,6 +7,7 @@
 #include <QDateTime>
 #include <QDebug>
 
+//
 PostData::PostData(int _id, QString _title, QString _type, QString _content)
     : id(_id), title(_title), type(_type), content(_content)
 {

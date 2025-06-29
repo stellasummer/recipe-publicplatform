@@ -18,6 +18,7 @@ MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent)
     , ui(new Ui::MainWindow)
 {
+
     ui->setupUi(this);
     ui->search_box->setPlaceholderText("请输入要搜索的菜品名称");
     //基本界面
@@ -25,8 +26,8 @@ MainWindow::MainWindow(QWidget *parent)
     if(file.open(QFile::OpenModeFlag::ReadOnly)){
         this->setStyleSheet(file.readAll());
     }
-    //首页菜品
-
+    
+    // 初始化示例数据
     QVector<QString> dishlist{u8"番茄炒鸡蛋",u8"韭菜炒虾仁",u8"鸡蛋灌饼",u8"土豆烧牛肉",u8"水煮肉片",u8"清炒土豆丝",u8"凉拌黄瓜",u8"骨汤米线",u8"清炒油菜",u8"醪糟汤圆"};
     for(int i=0;i<10;i++)
     {
@@ -36,27 +37,11 @@ MainWindow::MainWindow(QWidget *parent)
     posts.updatePost(new PostData(0,u8"番茄炒鸡蛋","sss"));
     posts[0]->addImage(":/assets/"+QString::number(0)+".png");
 
-    // 创建瀑布流布局
-    WaterfallLayout *dishes = new WaterfallLayout();
-    dishes->setSpacing(15);
-    QFile file2(":/assets/dish.qss");
-
-    QVector<PostData*> ssposts = posts.getByType("ss");
-    ssposts.append(posts.getByType("sss"));
-    for(int i = 0; i < ssposts.size(); i++) {
-        QString pixPath = "";
-        if(ssposts[i]->pixFilename.size() > 0) {
-            pixPath = ssposts[i]->postDir + "/" + ssposts[i]->pixFilename[0];
-        }
-        ImageButton *pBtn = new ImageButton(ssposts[i]->title, pixPath);
-        dishes->addWidget(pBtn);
-    }
-
-    ui->scrollArea->widget()->setLayout(dishes);
+    // 刷新首页显示
+    refreshHomePage();
 
     // 安装事件过滤器监听大小变化
     ui->scrollArea->installEventFilter(this);
-
 
     // 搜索
     connect(ui->search_icon, &QPushButton::clicked, [=]() mutable {
@@ -88,8 +73,12 @@ MainWindow::MainWindow(QWidget *parent)
                 pixPath = resultposts[i]->postDir + "/" + resultposts[i]->pixFilename[0];
             }
 
-            ImageButton *pBtn = new ImageButton(resultposts[i]->title, pixPath);
+            ImageButton *pBtn = new ImageButton(resultposts[i]->title, pixPath, resultposts[i], &posts);
             pBtn->setSizePolicy(QSizePolicy::Expanding, QSizePolicy::Expanding);
+            
+            // 连接ImageButton的信号，当帖子更新时刷新首页
+            connect(pBtn, &ImageButton::postUpdated, this, &MainWindow::refreshHomePage);
+            
             dishes->addWidget(pBtn);
         }
 
@@ -134,6 +123,49 @@ MainWindow::~MainWindow()
 {
     delete ui;
 }
+
+// 刷新首页显示
+void MainWindow::refreshHomePage()
+{
+    // 清理旧布局
+    QWidget* scrollWidget = ui->scrollArea->widget();
+    QLayout* oldLayout = scrollWidget->layout();
+    if (oldLayout) {
+        while (QLayoutItem* item = oldLayout->takeAt(0)) {
+            if (item->widget()) {
+                delete item->widget();
+            }
+            delete item;
+        }
+        delete oldLayout;
+    }
+
+    // 创建瀑布流布局
+    WaterfallLayout *dishes = new WaterfallLayout();
+    dishes->setSpacing(15);
+    QFile file2(":/assets/dish.qss");
+
+    // 获取所有普通内容和收藏的帖子
+    QVector<PostData*> ssposts = posts.getByType("ss");
+    ssposts.append(posts.getByType("sss"));
+    
+    // 展示所有帖子
+    for(int i = 0; i < ssposts.size(); i++) {
+        QString pixPath = "";
+        if(ssposts[i]->pixFilename.size() > 0) {
+            pixPath = ssposts[i]->postDir + "/" + ssposts[i]->pixFilename[0];
+        }
+        ImageButton *pBtn = new ImageButton(ssposts[i]->title, pixPath, ssposts[i], &posts);
+        
+        // 连接ImageButton的信号，当帖子更新时刷新首页
+        connect(pBtn, &ImageButton::postUpdated, this, &MainWindow::refreshHomePage);
+        
+        dishes->addWidget(pBtn);
+    }
+
+    ui->scrollArea->widget()->setLayout(dishes);
+}
+
 //我的按钮
 void MainWindow::on_mystore_clicked()
 {
@@ -152,14 +184,26 @@ void MainWindow::mystorewindow_close()//当子窗口关闭时，将指针置空�
     this->setEnabled(true);
 }
 
+//实现
 void MainWindow::on_create_recipes_clicked()
 {
-    createwindow* createwindow_ui=new createwindow(this);
-    createwindow_ui->show();
-    QFile file(":/assets/createwindow.qss");
-    if(file.open(QFile::OpenModeFlag::ReadOnly)){
-        createwindow_ui->setStyleSheet(file.readAll());
+    if (!createwindow_ui) {
+        createwindow_ui = new createwindow(posts, this);
+        QFile file(":/assets/createwindow.qss");
+        if(file.open(QFile::OpenModeFlag::ReadOnly)){
+            createwindow_ui->setStyleSheet(file.readAll());
+        }
+        
+        // 连接信号，当创建新帖子后刷新首页
+        connect(createwindow_ui, &createwindow::postCreated, this, &MainWindow::refreshHomePage);
+        
+        connect(createwindow_ui, &QWidget::destroyed, [this]() {
+            createwindow_ui = nullptr;
+        });
     }
+    createwindow_ui->show();
+    createwindow_ui->raise();
+    createwindow_ui->activateWindow();
 }
 
 

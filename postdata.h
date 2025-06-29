@@ -11,7 +11,7 @@
 class PostData
 {
 public:
-    int id;
+    int id;//录入菜品信息的时候实例化一个PostData
     QString title;
     QString type;//区分收藏、普通内容和草稿,规则：s:草稿，ss：普通，sss：收藏
     QString content;

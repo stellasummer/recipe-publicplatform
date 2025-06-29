@@ -2,19 +2,20 @@
 #include<QVBoxLayout>
 #include<QLabel>
 #include<QFileDialog>
+//接受图片路径、指向userdata的指针、父窗口部件
 avatarbutton::avatarbutton(const QString &imagePath, UserData* user,QWidget *parent): QPushButton(parent) {
 
-    QVBoxLayout *layout = new QVBoxLayout(this);
+    QVBoxLayout *layout = new QVBoxLayout(this);//设置一个垂直布局
     layout->setContentsMargins(3, 3, 3, 3);
-    QWidget *imageContainer = new QWidget();
+    QWidget *imageContainer = new QWidget();//image container用于容纳图片。widget是窗口基类
     imageContainer->setSizePolicy(QSizePolicy::Expanding, QSizePolicy::Expanding);
-    QVBoxLayout *imageLayout = new QVBoxLayout(imageContainer);
+    QVBoxLayout *imageLayout = new QVBoxLayout(imageContainer);//为image container设置垂直布局
     imageLayout->setContentsMargins(0, 0, 0, 0);
 
-    QLabel *imageLabel = new QLabel();
-    imageLabel->setSizePolicy(QSizePolicy::Expanding, QSizePolicy::Expanding);
-    imageLabel->setAlignment(Qt::AlignCenter);
-    QPixmap pixmap(imagePath);
+    QLabel *imageLabel = new QLabel();//Qlabel是widget的子类，用于显示文本或图片
+    imageLabel->setSizePolicy(QSizePolicy::Expanding, QSizePolicy::Expanding);//大小策略
+    imageLabel->setAlignment(Qt::AlignCenter);//缩放方式
+    QPixmap pixmap(imagePath);//Pixmap用于处理图片
     if(!pixmap.isNull()) {
         // 保持宽高比缩放，限制最大高度
         imageLabel->setPixmap(pixmap.scaledToWidth(200, Qt::SmoothTransformation));
@@ -35,6 +36,7 @@ avatarbutton::avatarbutton(const QString &imagePath, UserData* user,QWidget *par
                   "}");
     setMinimumSize(60, 60);
     setSizePolicy(QSizePolicy::Expanding, QSizePolicy::Expanding);
+    //处理点击事件
     connect(this, &QPushButton::clicked, this, [=]
     {
         // 弹出文件选择对话框
